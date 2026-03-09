@@ -1,4 +1,4 @@
-import { AgentLoopState } from "./types";
+import { AgentLoopState } from "./LoopTypes";
 
 export const PLAN_SYSTEM_PROMPT = `
     You are the Planner agent in an agentic loop.

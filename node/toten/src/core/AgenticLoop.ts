@@ -9,13 +9,13 @@ import {
   buildPlanPrompt,
   CRITIC_SYSTEM_PROMPT,
   PLAN_SYSTEM_PROMPT,
-} from "./prompts";
+} from "./LoopPrompts";
 import {
   AgentLoopResult,
   AgentLoopState,
   CriticDecisionSchema,
   PlanDecisionSchema,
-} from "./types";
+} from "./LoopTypes";
 
 export interface RunLoopInput {
   goal: string;
