@@ -8,8 +8,6 @@ const DEFAULT_GOAL =
 
 async function main(): Promise<void> {
 
-  const region = process.env.AWS_REGION ?? "eu-west-1";
-  const model = process.env.MODEL ?? "amazon.nova-lite-v1:0";
   const goal = process.argv.slice(2).join(" ") || DEFAULT_GOAL;
 
   const ai = genkit({
