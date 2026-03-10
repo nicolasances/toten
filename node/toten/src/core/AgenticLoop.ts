@@ -1,20 +1,8 @@
 import { Genkit } from "genkit";
 import { ToolAction } from "genkit";
 import { v4 as uuidv4 } from "uuid";
-import {
-  ACT_SYSTEM_PROMPT,
-  buildActPrompt,
-  buildCriticPrompt,
-  buildPlanPrompt,
-  CRITIC_SYSTEM_PROMPT,
-  PLAN_SYSTEM_PROMPT,
-} from "./LoopPrompts";
-import {
-  AgentLoopResult,
-  AgentLoopState,
-  CriticDecisionSchema,
-  PlanDecisionSchema,
-} from "./LoopTypes";
+import { ACT_SYSTEM_PROMPT, buildActPrompt, buildCriticPrompt, buildPlanPrompt, CRITIC_SYSTEM_PROMPT, PLAN_SYSTEM_PROMPT, } from "./LoopPrompts";
+import { AgentLoopResult, AgentLoopState, CriticDecisionSchema, PlanDecisionSchema, } from "./LoopTypes";
 import { Logger } from "../util/Logger";
 
 export interface RunLoopInput {
@@ -45,6 +33,7 @@ export class AgenticLoop {
     tools: ToolAction[];
     correlationId?: string;
   }) {
+
     this.ai = ai;
     this.tools = tools;
     this.correlationId = correlationId ?? uuidv4();
@@ -55,6 +44,7 @@ export class AgenticLoop {
    * Run the loop
    */
   async loop(input: RunLoopInput): Promise<AgentLoopResult> {
+
     const availableToolsText = describeTools(this.tools);
 
     const state: AgentLoopState = {
@@ -129,18 +119,20 @@ export class AgenticLoop {
 
       state.iterations += 1;
 
-      if (critic.fulfilled) {
-        const finalAnswer = critic.finalAnswer ?? (actOutput || "Goal fulfilled.");
-        state.finalAnswer = finalAnswer;
-        return {
-          done: true,
-          finalAnswer,
-          state,
-        };
+      if (!critic.fulfilled) {
+        const observation = critic.observations ?? "Goal not fulfilled yet.";
+        state.observations.push(observation);
+        continue;
       }
 
-      const observation = critic.observations ?? "Goal not fulfilled yet.";
-      state.observations.push(observation);
+      const finalAnswer = critic.finalAnswer ?? (actOutput || "Goal fulfilled.");
+      state.finalAnswer = finalAnswer;
+
+      return {
+        done: true,
+        finalAnswer,
+        state,
+      };
     }
 
     const timeout = `
@@ -165,21 +157,26 @@ export class AgenticLoop {
  *
  * @returns A string describing the available tools.
  */
-export function describeTools(tools: ToolAction[]): string {
-  function getToolName(tool: ToolAction): string {
-    const toolAny = tool as any;
-    return toolAny?.name ?? toolAny?.__action?.name ?? toolAny?.metadata?.name ?? "unknownTool";
-  }
+function getToolName(tool: ToolAction): string {
 
-  function getToolDescription(tool: ToolAction): string {
-    const toolAny = tool as any;
-    return (
-      toolAny?.description ??
-      toolAny?.__action?.description ??
-      toolAny?.metadata?.description ??
-      "No description."
-    );
-  }
+  const toolAny = tool as any;
+
+  return toolAny?.name ?? toolAny?.__action?.name ?? toolAny?.metadata?.name ?? "unknownTool";
+}
+
+function getToolDescription(tool: ToolAction): string {
+
+  const toolAny = tool as any;
+
+  return (
+    toolAny?.description ??
+    toolAny?.__action?.description ??
+    toolAny?.metadata?.description ??
+    "No description."
+  );
+}
+
+export function describeTools(tools: ToolAction[]): string {
 
   return tools.map((tool) => `- ${getToolName(tool)}: ${getToolDescription(tool)}`).join("\n");
 }

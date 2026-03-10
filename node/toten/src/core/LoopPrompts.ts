@@ -35,6 +35,7 @@ export const CRITIC_SYSTEM_PROMPT = `
 `;
 
 export function buildPlanPrompt(state: AgentLoopState, availableToolsText: string): string {
+
   return `
         GOAL: ${state.goal}
 
@@ -49,6 +50,7 @@ export function buildPlanPrompt(state: AgentLoopState, availableToolsText: strin
 }
 
 export function buildActPrompt(state: AgentLoopState, instruction: string): string {
+
   return `
         GOAL: ${state.goal}
 
@@ -57,6 +59,7 @@ export function buildActPrompt(state: AgentLoopState, instruction: string): stri
 }
 
 export function buildCriticPrompt(state: AgentLoopState, actOutput: string): string {
+
   return `
         GOAL: ${state.goal}
 

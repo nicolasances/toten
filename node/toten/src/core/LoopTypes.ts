@@ -7,6 +7,19 @@ export const PlanDecisionSchema = z.object({
 
 export type PlanDecision = z.infer<typeof PlanDecisionSchema>;
 
+type CriticDecisionRaw = { fulfilled: boolean; observations?: string; finalAnswer?: string; reasoning: string };
+
+function validateCriticDecision(value: CriticDecisionRaw, ctx: z.RefinementCtx): void {
+	if (value.fulfilled && !value.finalAnswer) {
+		ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["finalAnswer"], message: "finalAnswer is required when fulfilled=true." });
+		return;
+	}
+
+	if (!value.fulfilled && !value.observations) {
+		ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["observations"], message: "observations is required when fulfilled=false." });
+	}
+}
+
 export const CriticDecisionSchema = z
 	.object({
 		fulfilled: z.boolean(),
@@ -14,23 +27,7 @@ export const CriticDecisionSchema = z
 		finalAnswer: z.string().optional(),
 		reasoning: z.string(),
 	})
-	.superRefine((value, ctx) => {
-		if (value.fulfilled && !value.finalAnswer) {
-			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
-				path: ["finalAnswer"],
-				message: "finalAnswer is required when fulfilled=true.",
-			});
-		}
-
-		if (!value.fulfilled && !value.observations) {
-			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
-				path: ["observations"],
-				message: "observations is required when fulfilled=false.",
-			});
-		}
-	});
+	.superRefine(validateCriticDecision);
 
 export type CriticDecision = z.infer<typeof CriticDecisionSchema>;
 
