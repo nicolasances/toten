@@ -1,7 +1,6 @@
 import { Genkit } from "genkit";
 import { ToolAction } from "genkit";
 import { v4 as uuidv4 } from "uuid";
-import { Logger } from "totoms";
 import {
   ACT_SYSTEM_PROMPT,
   buildActPrompt,
@@ -16,6 +15,7 @@ import {
   CriticDecisionSchema,
   PlanDecisionSchema,
 } from "./LoopTypes";
+import { Logger } from "../util/Logger";
 
 export interface RunLoopInput {
   goal: string;

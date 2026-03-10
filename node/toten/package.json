@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "genkit": "^1.29.0",
-    "totoms": "^2.0.0",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
