@@ -2,6 +2,20 @@
 
 This package provides the Node.js implementation of ToteN. For a language-agnostic overview of the core concepts, see the [root README](../README.md).
 
+## Table of Contents
+
+- [Using the AgenticLoop](#using-the-agenticloop)
+  - [Installation](#installation)
+  - [Quick start](#quick-start)
+  - [Constructor](#constructor)
+  - [`loop(input)` method](#loopinput-method)
+  - [Defining tools](#defining-tools)
+  - [Runnable example](#runnable-example)
+- [Building and Publishing to NPM](#building-and-publishing-to-npm)
+  - [Build](#build)
+  - [Type-check without emitting](#type-check-without-emitting)
+  - [Publish](#publish)
+
 ## Using the AgenticLoop
 
 ### Installation

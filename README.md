@@ -10,15 +10,7 @@ The central concept in ToteN is the **Agentic Loop**: a repeating cycle that dri
 
 Each iteration of the loop goes through three phases:
 
-```
-┌─────────┐     ┌─────┐     ┌────────┐
-│  PLAN   │ ──▶ │ ACT │ ──▶ │ CRITIC │
-└─────────┘     └─────┘     └────────┘
-                                 │
-                    fulfilled? ──┤
-                                 │ no → observations → next iteration
-                                 │ yes → final answer
-```
+![Agentic Loop](docs/drawio/agentic-loop.drawio.svg)
 
 #### Plan
 
@@ -52,10 +44,6 @@ Tools are the actions the agent can take. You define them yourself and register 
 ### Context
 
 In addition to a goal, you can pass optional **context** — a list of background strings that the agent can use across all phases of every iteration to stay grounded in relevant information.
-
-### Correlation ID
-
-Each loop instance can be assigned a **correlation ID** for tracing. If you do not provide one, a unique ID is generated automatically. All log output from the loop is tagged with this ID so you can trace a single run across log aggregation systems.
 
 ## What Can You Build With It?
 
