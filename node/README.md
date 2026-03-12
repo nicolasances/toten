@@ -7,8 +7,9 @@ This package provides the Node.js implementation of ToteN. For a language-agnost
 - [Using the AgenticLoop](#using-the-agenticloop)
   - [Installation](#installation)
   - [Quick start](#quick-start)
-  - [Constructor](#constructor)
-  - [`loop(input)` method](#loopinput-method)
+  - [Creating an Agentic Loop](#creating-an-agentic-loop)
+    - [Constructor](#constructor)
+    - [`loop(input)` method](#loopinput-method)
   - [Defining tools](#defining-tools)
   - [Runnable example](#runnable-example)
 - [Building and Publishing to NPM](#building-and-publishing-to-npm)
@@ -62,7 +63,9 @@ console.log(result.done);        // true when the goal was fulfilled
 console.log(result.state);       // Full execution trace
 ```
 
-### Constructor
+### Creating an Agentic Loop
+
+#### Constructor
 
 ```typescript
 new AgenticLoop({ ai, tools, correlationId? })
@@ -74,7 +77,7 @@ new AgenticLoop({ ai, tools, correlationId? })
 | `tools` | `ToolAction[]` | ✓ | The tools the agent can call. |
 | `correlationId` | `string` | — | Optional tracing ID. A UUID is generated if omitted. |
 
-### `loop(input)` method
+#### `loop(input)` method
 
 ```typescript
 const result = await loop.loop(input);
