@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+     width="770px" height="390px" viewBox="0 0 770 390"
+     content="&lt;mxfile host=&quot;app.diagrams.net&quot;&gt;&lt;diagram id=&quot;agentic-loop&quot; name=&quot;Agentic Loop&quot;&gt;&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=&quot;0&quot;/&gt;&lt;mxCell id=&quot;1&quot; parent=&quot;0&quot;/&gt;&lt;mxCell id=&quot;2&quot; value=&quot;PLAN&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;40&quot; y=&quot;80&quot; width=&quot;120&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;3&quot; value=&quot;ACT&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;220&quot; y=&quot;80&quot; width=&quot;120&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;4&quot; value=&quot;CRITIC&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d6b656;fontStyle=1;fontSize=14;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;400&quot; y=&quot;80&quot; width=&quot;120&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;5&quot; value=&quot;&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;&quot; edge=&quot;1&quot; source=&quot;2&quot; target=&quot;3&quot; parent=&quot;1&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;6&quot; value=&quot;&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;&quot; edge=&quot;1&quot; source=&quot;3&quot; target=&quot;4&quot; parent=&quot;1&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;7&quot; value=&quot;fulfilled?&quot; style=&quot;rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;405&quot; y=&quot;185&quot; width=&quot;110&quot; height=&quot;90&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;8&quot; value=&quot;&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;&quot; edge=&quot;1&quot; source=&quot;4&quot; target=&quot;7&quot; parent=&quot;1&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;9&quot; value=&quot;Final Answer&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;570&quot; y=&quot;200&quot; width=&quot;150&quot; height=&quot;60&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;10&quot; value=&quot;yes&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;&quot; edge=&quot;1&quot; source=&quot;7&quot; target=&quot;9&quot; parent=&quot;1&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;11&quot; value=&quot;no + observations&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;&quot; edge=&quot;1&quot; source=&quot;7&quot; target=&quot;2&quot; parent=&quot;1&quot;&gt;&lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot;&gt;&lt;Array as=&quot;points&quot;&gt;&lt;mxPoint x=&quot;460&quot; y=&quot;340&quot;/&gt;&lt;mxPoint x=&quot;100&quot; y=&quot;340&quot;/&gt;&lt;/Array&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;&lt;/diagram&gt;&lt;/mxfile&gt;"
+     style="background-color: rgb(255, 255, 255);">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- PLAN box -->
+  <rect x="40" y="80" width="120" height="60" rx="10" fill="#dae8fc" stroke="#6c8ebf" stroke-width="2"/>
+  <text x="100" y="116" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="15" font-weight="bold" fill="#23445d">PLAN</text>
+
+  <!-- ACT box -->
+  <rect x="220" y="80" width="120" height="60" rx="10" fill="#d5e8d4" stroke="#82b366" stroke-width="2"/>
+  <text x="280" y="116" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="15" font-weight="bold" fill="#1a3a1a">ACT</text>
+
+  <!-- CRITIC box -->
+  <rect x="400" y="80" width="120" height="60" rx="10" fill="#ffe6cc" stroke="#d6b656" stroke-width="2"/>
+  <text x="460" y="116" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="15" font-weight="bold" fill="#5a3e00">CRITIC</text>
+
+  <!-- fulfilled? diamond: center 460,230; half-w=55 half-h=45 -->
+  <polygon points="460,185 515,230 460,275 405,230" fill="#fff2cc" stroke="#d6b656" stroke-width="2"/>
+  <text x="460" y="227" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#5a3e00">fulfilled?</text>
+
+  <!-- Final Answer box -->
+  <rect x="570" y="200" width="150" height="60" rx="10" fill="#d5e8d4" stroke="#82b366" stroke-width="2"/>
+  <text x="645" y="236" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="bold" fill="#1a3a1a">Final Answer</text>
+
+  <!-- PLAN -> ACT -->
+  <line x1="160" y1="110" x2="218" y2="110" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ACT -> CRITIC -->
+  <line x1="340" y1="110" x2="398" y2="110" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- CRITIC -> diamond (vertical) -->
+  <line x1="460" y1="140" x2="460" y2="183" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- diamond -> Final Answer (yes) -->
+  <line x1="516" y1="230" x2="568" y2="230" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="540" y="222" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#333">yes</text>
+
+  <!-- diamond -> PLAN (no + observations): bottom feedback arc -->
+  <path d="M 460 276 L 460 340 L 100 340 L 100 142" fill="none" stroke="#555" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6,3"/>
+  <text x="283" y="357" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#555">no + observations -&gt; next iteration</text>
+  <text x="445" y="300" text-anchor="end" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#555">no</text>
+
+</svg>
