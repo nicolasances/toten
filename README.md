@@ -56,4 +56,4 @@ The Agentic Loop is a general-purpose building block. Some examples of what you 
 
 ## Language-Specific Documentation
 
-- **Node.js / TypeScript** → [`node/README.md`](node/README.md)
+- [Node (Typescript)](node/README.md)
