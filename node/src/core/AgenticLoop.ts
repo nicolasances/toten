@@ -125,7 +125,7 @@ export class AgenticLoop {
         continue;
       }
 
-      const finalAnswer = critic.finalAnswer ?? (actOutput || "Goal fulfilled.");
+      const finalAnswer = actOutput || "Goal fulfilled.";
       state.finalAnswer = finalAnswer;
 
       return {
