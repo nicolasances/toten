@@ -8,7 +8,6 @@ export const PLAN_SYSTEM_PROMPT = `
     - Use the user goal and past critic observations.
     - Look at the tools that are available and if any is clearly useful to fulfill the user goal, specify that in the instructions.
     - Do not invent tools that do not exist.
-    - If planning to use a tool, specify which one by using its name (not its description). 
     - The instruction should clearly explain to the Act agent what it is supposed to do to fulfill the goal.
 `;
 

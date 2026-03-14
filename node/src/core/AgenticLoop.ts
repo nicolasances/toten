@@ -161,7 +161,7 @@ function getToolName(tool: ToolAction): string {
 
   const toolAny = tool as any;
 
-  return toolAny?.name ?? toolAny?.__action?.name ?? toolAny?.metadata?.name ?? "unknownTool";
+  return toolAny?.__action?.name ?? toolAny?.metadata?.name ?? toolAny?.name ?? "unknownTool";
 }
 
 function getToolDescription(tool: ToolAction): string {
@@ -178,5 +178,7 @@ function getToolDescription(tool: ToolAction): string {
 
 export function describeTools(tools: ToolAction[]): string {
 
-  return tools.map((tool) => `- ${getToolName(tool)}: ${getToolDescription(tool)}`).join("\n");
+  const desc = tools.map((tool) => `- ${getToolName(tool)}: ${getToolDescription(tool)}`).join("\n");
+
+  return desc
 }

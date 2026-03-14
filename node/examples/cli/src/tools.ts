@@ -8,6 +8,8 @@ const MOCK_WEATHER: Record<string, { condition: string; tempC: number; humidity:
   sydney: { condition: "Sunny", tempC: 25, humidity: 50 },
 };
 
+const list = ["Bread", "Milk"];
+
 export function createTools(ai: Genkit): ToolAction[] {
 
   const getWeather = ai.defineTool(
@@ -49,5 +51,14 @@ export function createTools(ai: Genkit): ToolAction[] {
     async () => ({ utcDateTime: new Date().toISOString() })
   );
 
-  return [getWeather, getCurrentTime];
+  const getSupermarketListItems = ai.defineTool(
+    {
+      name: "getSupermarketListItems",
+      description: "Returns current supermarket list items.",
+      inputSchema: z.object({}),
+    },
+    async () => JSON.stringify(list)
+  );
+
+  return [getWeather, getCurrentTime, getSupermarketListItems];
 }
