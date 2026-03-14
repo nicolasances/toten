@@ -1,6 +1,5 @@
 import { Genkit } from "genkit";
 import { ToolAction } from "genkit";
-import { v4 as uuidv4 } from "uuid";
 import { ACT_SYSTEM_PROMPT, buildActPrompt, buildCriticPrompt, buildPlanPrompt, CRITIC_SYSTEM_PROMPT, PLAN_SYSTEM_PROMPT, } from "./LoopPrompts";
 import { AgentLoopResult, AgentLoopState, CriticDecisionSchema, PlanDecisionSchema, } from "./LoopTypes";
 import { Logger } from "../util/Logger";
@@ -36,7 +35,7 @@ export class AgenticLoop {
 
     this.ai = ai;
     this.tools = tools;
-    this.correlationId = correlationId ?? uuidv4();
+    this.correlationId = correlationId ?? crypto.randomUUID();
     this.logger = Logger.getInstance();
   }
 
