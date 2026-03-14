@@ -2,6 +2,19 @@
 
 ToteN is a package for building **autonomous agents**. It provides the core building blocks that let you run a goal-driven reasoning loop powered by an AI model and a set of tools you define.
 
+## Table of Contents
+
+- [Core Concepts](#core-concepts)
+  - [The Agentic Loop](#the-agentic-loop)
+    - [Plan](#plan)
+    - [Act](#act)
+    - [Critic](#critic)
+    - [Loop termination](#loop-termination)
+  - [Tools](#tools)
+  - [Context](#context)
+- [What Can You Build With It?](#what-can-you-build-with-it)
+- [Language-Specific Documentation](#language-specific-documentation)
+
 ## Core Concepts
 
 ### The Agentic Loop
