@@ -56,8 +56,11 @@ export function createTools(ai: Genkit): ToolAction[] {
       name: "getSupermarketListItems",
       description: "Returns current supermarket list items.",
       inputSchema: z.object({}),
+      outputSchema: z.object({
+        items: z.array(z.string()).describe("The list of items in the supermarket list."),
+      }),
     },
-    async () => JSON.stringify(list)
+    async () => ({ items: list })
   );
 
   return [getWeather, getCurrentTime, getSupermarketListItems];
