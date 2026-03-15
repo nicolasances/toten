@@ -1,6 +1,6 @@
 {
   "name": "@nicolas.ances/toten",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Node.js TypeScript SDK for Agents",
   "license": "ISC",
   "main": "dist/index.js",
@@ -13,8 +13,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
-    "genkit": "^1.29.0",
-    "uuid": "^13.0.0"
+    "genkit": "^1.29.0"
   },
   "devDependencies": {
     "@types/node": "^22.15.21",
