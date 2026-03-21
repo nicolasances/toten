@@ -49,12 +49,16 @@ export function buildPlanPrompt(state: AgentLoopState, availableToolsText: strin
     `;
 }
 
-export function buildActPrompt(state: AgentLoopState, instruction: string): string {
+export function buildActPrompt(state: AgentLoopState, instruction: string, additionalInstructions?: string): string {
+
+  const additionalSection = additionalInstructions
+    ? `\n        ADDITIONAL_INSTRUCTIONS: ${additionalInstructions}`
+    : "";
 
   return `
         GOAL: ${state.goal}
 
-        PLANNER_INSTRUCTION: ${instruction}
+        PLANNER_INSTRUCTION: ${instruction}${additionalSection}
     `;
 }
 

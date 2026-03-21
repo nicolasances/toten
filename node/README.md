@@ -68,7 +68,7 @@ console.log(result.state);       // Full execution trace
 #### Constructor
 
 ```typescript
-new AgenticLoop({ ai, tools, correlationId? })
+new AgenticLoop({ ai, tools, correlationId?, personality?, additionalActInstructions? })
 ```
 
 | Parameter | Type | Required | Description |
@@ -76,6 +76,8 @@ new AgenticLoop({ ai, tools, correlationId? })
 | `ai` | `Genkit` | ✓ | A configured Genkit instance. |
 | `tools` | `ToolAction[]` | ✓ | The tools the agent can call. |
 | `correlationId` | `string` | — | Optional tracing ID. A UUID is generated if omitted. |
+| `personality` | `string` | — | Appended to the Act system prompt to give the agent a specific style, tone, or identity. |
+| `additionalActInstructions` | `string` | — | Appended to the Act user prompt to inject domain-specific rules or constraints. |
 
 #### `loop(input)` method
 

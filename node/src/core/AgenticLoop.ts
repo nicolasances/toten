@@ -22,21 +22,29 @@ export class AgenticLoop {
   private readonly tools: ToolAction[];
   private readonly correlationId: string;
   private readonly logger: Logger;
+  private readonly personality?: string;
+  private readonly additionalActInstructions?: string;
 
   constructor({
     ai,
     tools,
     correlationId,
+    personality,
+    additionalActInstructions,
   }: {
     ai: Genkit;
     tools: ToolAction[];
     correlationId?: string;
+    personality?: string;
+    additionalActInstructions?: string;
   }) {
 
     this.ai = ai;
     this.tools = tools;
     this.correlationId = correlationId ?? crypto.randomUUID();
     this.logger = Logger.getInstance();
+    this.personality = personality;
+    this.additionalActInstructions = additionalActInstructions;
   }
 
   /**
@@ -75,11 +83,15 @@ export class AgenticLoop {
 
       this.logger.compute(this.correlationId, `Plan instruction: ${plan.instruction}`);
 
+      const actSystemPrompt = this.personality
+        ? `${ACT_SYSTEM_PROMPT}\n    ${this.personality}`
+        : ACT_SYSTEM_PROMPT;
+
       let actOutput = "";
       try {
         const actResponse = await this.ai.generate({
-          system: ACT_SYSTEM_PROMPT,
-          prompt: buildActPrompt(state, plan.instruction),
+          system: actSystemPrompt,
+          prompt: buildActPrompt(state, plan.instruction, this.additionalActInstructions),
           tools: this.tools,
         });
 

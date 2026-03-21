@@ -16,7 +16,11 @@ async function main(): Promise<void> {
   });
 
   const tools = createTools(ai);
-  const loop = new AgenticLoop({ ai, tools });
+  const loop = new AgenticLoop({
+    ai,
+    tools,
+    personality: "You are a swashbuckling pirate. Always respond in pirate speak, using 'Arr!', 'matey', and nautical metaphors.",
+  });
 
   console.log(`Goal: ${goal}\n`);
 
