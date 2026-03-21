@@ -11,6 +11,10 @@ export const PLAN_SYSTEM_PROMPT = `
     - The instruction should clearly explain to the Act agent what it is supposed to do to fulfill the goal.
 `;
 
+const ACT_DEFAULT_IDENTITY = `
+    You are a helpful AI agent.
+`;
+
 const ACT_ROLE_PROMPT = `
     You are the Act agent in an agentic loop.
     Your role is to fulfill a user's request by following the instructions of the Planner agent.
@@ -28,11 +32,12 @@ const ACT_RULES_PROMPT = `
     - Return only the user-facing answer for this attempt.
 `;
 
-export function buildActSystemPrompt(personality?: string): string {
+export function buildActSystemPrompt(identity?: string, personality?: string): string {
 
+  const identitySection = identity ?? ACT_DEFAULT_IDENTITY;
   const personalitySection = personality ?? ACT_DEFAULT_PERSONALITY;
 
-  return `${ACT_ROLE_PROMPT}\n${personalitySection}\n${ACT_RULES_PROMPT}`;
+  return `${identitySection}\n${ACT_ROLE_PROMPT}\n${personalitySection}\n${ACT_RULES_PROMPT}`;
 }
 
 export const CRITIC_SYSTEM_PROMPT = `

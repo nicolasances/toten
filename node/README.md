@@ -68,7 +68,7 @@ console.log(result.state);       // Full execution trace
 #### Constructor
 
 ```typescript
-new AgenticLoop({ ai, tools, correlationId?, personality?, additionalInstructions? })
+new AgenticLoop({ ai, tools, correlationId?, identity?, personality?, additionalInstructions? })
 ```
 
 | Parameter | Type | Required | Description |
@@ -76,7 +76,8 @@ new AgenticLoop({ ai, tools, correlationId?, personality?, additionalInstruction
 | `ai` | `Genkit` | ✓ | A configured Genkit instance. |
 | `tools` | `ToolAction[]` | ✓ | The tools the agent can call. |
 | `correlationId` | `string` | — | Optional tracing ID. A UUID is generated if omitted. |
-| `personality` | `string` | — | Replaces the default personality in the Act system prompt to give the agent a specific style, tone, or identity. |
+| `identity` | `string` | — | Replaces the default identity in the Act system prompt (e.g. "You are a Supermarket Assistant agent"). Defaults to "You are a helpful AI agent." |
+| `personality` | `string` | — | Replaces the default personality in the Act system prompt to give the agent a specific style or tone. |
 | `additionalInstructions` | `string` | — | Appended to the Plan user prompt to inject domain-specific rules or constraints for the Planner. |
 
 #### `loop(input)` method

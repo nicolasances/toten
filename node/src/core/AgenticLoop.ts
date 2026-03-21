@@ -22,6 +22,7 @@ export class AgenticLoop {
   private readonly tools: ToolAction[];
   private readonly correlationId: string;
   private readonly logger: Logger;
+  private readonly identity?: string;
   private readonly personality?: string;
   private readonly additionalInstructions?: string;
 
@@ -29,12 +30,14 @@ export class AgenticLoop {
     ai,
     tools,
     correlationId,
+    identity,
     personality,
     additionalInstructions,
   }: {
     ai: Genkit;
     tools: ToolAction[];
     correlationId?: string;
+    identity?: string;
     personality?: string;
     additionalInstructions?: string;
   }) {
@@ -43,6 +46,7 @@ export class AgenticLoop {
     this.tools = tools;
     this.correlationId = correlationId ?? crypto.randomUUID();
     this.logger = Logger.getInstance();
+    this.identity = identity;
     this.personality = personality;
     this.additionalInstructions = additionalInstructions;
   }
@@ -83,7 +87,7 @@ export class AgenticLoop {
 
       this.logger.compute(this.correlationId, `Plan instruction: ${plan.instruction}`);
 
-      const actSystemPrompt = buildActSystemPrompt(this.personality);
+      const actSystemPrompt = buildActSystemPrompt(this.identity, this.personality);
 
       let actOutput = "";
       try {
