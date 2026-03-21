@@ -1,0 +1,20 @@
+{
+  "name": "toten-cli-example",
+  "version": "1.0.0",
+  "description": "CLI example of the Toten Agentic Loop with example tools",
+  "private": true,
+  "scripts": {
+    "build:sdk": "cd ../.. && npm run build",
+    "start": "npm run build:sdk && ts-node src/index.ts"
+  },
+  "dependencies": {
+    "genkit": "^1.29.0",
+    "@genkit-ai/google-genai": "^1.29.0",
+    "toten": "file:../../"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.8.3"
+  }
+}
