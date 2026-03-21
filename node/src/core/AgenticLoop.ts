@@ -1,6 +1,6 @@
 import { Genkit } from "genkit";
 import { ToolAction } from "genkit";
-import { ACT_SYSTEM_PROMPT, buildActPrompt, buildCriticPrompt, buildPlanPrompt, CRITIC_SYSTEM_PROMPT, PLAN_SYSTEM_PROMPT, } from "./LoopPrompts";
+import { buildActPrompt, buildActSystemPrompt, buildCriticPrompt, buildPlanPrompt, CRITIC_SYSTEM_PROMPT, PLAN_SYSTEM_PROMPT, } from "./LoopPrompts";
 import { AgentLoopResult, AgentLoopState, CriticDecisionSchema, PlanDecisionSchema, } from "./LoopTypes";
 import { Logger } from "../util/Logger";
 
@@ -23,20 +23,20 @@ export class AgenticLoop {
   private readonly correlationId: string;
   private readonly logger: Logger;
   private readonly personality?: string;
-  private readonly additionalActInstructions?: string;
+  private readonly additionalInstructions?: string;
 
   constructor({
     ai,
     tools,
     correlationId,
     personality,
-    additionalActInstructions,
+    additionalInstructions,
   }: {
     ai: Genkit;
     tools: ToolAction[];
     correlationId?: string;
     personality?: string;
-    additionalActInstructions?: string;
+    additionalInstructions?: string;
   }) {
 
     this.ai = ai;
@@ -44,7 +44,7 @@ export class AgenticLoop {
     this.correlationId = correlationId ?? crypto.randomUUID();
     this.logger = Logger.getInstance();
     this.personality = personality;
-    this.additionalActInstructions = additionalActInstructions;
+    this.additionalInstructions = additionalInstructions;
   }
 
   /**
@@ -71,7 +71,7 @@ export class AgenticLoop {
 
       const planResponse = await this.ai.generate({
         system: PLAN_SYSTEM_PROMPT,
-        prompt: buildPlanPrompt(state, availableToolsText),
+        prompt: buildPlanPrompt(state, availableToolsText, this.additionalInstructions),
         output: { schema: PlanDecisionSchema },
       });
 
@@ -83,15 +83,13 @@ export class AgenticLoop {
 
       this.logger.compute(this.correlationId, `Plan instruction: ${plan.instruction}`);
 
-      const actSystemPrompt = this.personality
-        ? `${ACT_SYSTEM_PROMPT}\n    ${this.personality}`
-        : ACT_SYSTEM_PROMPT;
+      const actSystemPrompt = buildActSystemPrompt(this.personality);
 
       let actOutput = "";
       try {
         const actResponse = await this.ai.generate({
           system: actSystemPrompt,
-          prompt: buildActPrompt(state, plan.instruction, this.additionalActInstructions),
+          prompt: buildActPrompt(state, plan.instruction),
           tools: this.tools,
         });
 
