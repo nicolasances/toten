@@ -10,8 +10,12 @@ This package provides the Node.js implementation of ToteN. For a language-agnost
   - [Creating an Agentic Loop](#creating-an-agentic-loop)
     - [Constructor](#constructor)
     - [`loop(input)` method](#loopinput-method)
+  - [Custom instructions](#custom-instructions)
+    - [Identity](#identity)
+    - [Personality](#personality)
+    - [Additional instructions](#additional-instructions)
   - [Defining tools](#defining-tools)
-  - [Runnable example](#runnable-example)
+  - [Runnable examples](#runnable-examples)
 - [Building and Publishing to NPM](#building-and-publishing-to-npm)
   - [Build](#build)
   - [Type-check without emitting](#type-check-without-emitting)
@@ -102,6 +106,61 @@ const result = await loop.loop(input);
 | `finalAnswer` | `string` | The agent's final answer (or a timeout message). |
 | `state` | `AgentLoopState` | Full execution state including the history of every iteration. |
 
+### Custom instructions
+
+The three constructor parameters `identity`, `personality`, and `additionalInstructions` let you tailor the agent's behavior without modifying any prompts directly.
+
+#### Identity
+
+`identity` replaces the default `"You are a helpful AI agent."` line in the Act system prompt. Use it to give the agent a clear role or persona.
+
+```typescript
+const loop = new AgenticLoop({
+  ai,
+  tools,
+  identity: "You are a supermarket assistant agent. You help users manage their shopping list.",
+});
+```
+
+#### Personality
+
+`personality` replaces the default `"Be professional, concise, and directly useful."` line in the Act system prompt. Use it to control the agent's tone and communication style.
+
+```typescript
+const loop = new AgenticLoop({
+  ai,
+  tools,
+  personality: "Be friendly and warm. Use simple language and keep answers short.",
+});
+```
+
+#### Additional instructions
+
+`additionalInstructions` is appended to the Planner's prompt at runtime. Use it to inject domain-specific rules, constraints, or heuristics that should guide every planning step — without changing the agent's identity or tone.
+
+```typescript
+const loop = new AgenticLoop({
+  ai,
+  tools,
+  additionalInstructions: `
+    Before adding an item to the list, check the common items list for similar entries
+    to avoid duplicates caused by spelling variations.
+  `,
+});
+```
+
+All three can be combined freely:
+
+```typescript
+const loop = new AgenticLoop({
+  ai,
+  tools,
+  identity: "You are a supermarket assistant agent.",
+  personality: "Be friendly and use simple language.",
+  additionalInstructions: "Always confirm with the user before removing items from the list.",
+});
+```
+
 ### Defining tools
 
 Tools are defined with the Genkit `ai.defineTool()` API. Each tool needs:
@@ -139,9 +198,10 @@ Pass the tool to the loop:
 const loop = new AgenticLoop({ ai, tools: [getWeather] });
 ```
 
-### Runnable example
+### Runnable examples
 
-A fully working CLI example is available in [`examples/cli`](examples/cli/README.md). It uses Google Vertex AI and two mock tools (`getWeather` and `getCurrentTime`).
+- **[`examples/cli`](examples/cli/README.md)** — basic CLI demo using Google Vertex AI with two mock tools (`getWeather` and `getCurrentTime`).
+- **[`examples/instruct`](examples/instruct/README.md)** — demonstrates custom instructions (`identity`, `personality`, `additionalInstructions`) with a supermarket list agent.
 
 ---
 
